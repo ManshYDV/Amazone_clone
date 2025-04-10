@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecom.dto.LoginRequest;
 import com.ecom.dto.RegisterRequest;
-import com.ecom.entity.User;
 import com.ecom.service.UserServiceImpl;
 
 import jakarta.validation.Valid;
@@ -55,21 +55,29 @@ public class AuthController {
 			result.getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(errors);
 		}
-		try {
-			User user = userService.getUserByEmail(loginRequest.getEmail());
-			if (!userService.passwordMatched(loginRequest.getPassword(), user.getPassword())) {
-				return ResponseEntity.status(401).body("Invalid credentials");
-			}
-			Map<String, Object> userData = new HashMap<>();
-			userData.put("id", user.getId());
-			userData.put("name", user.getFirstName() + " " + user.getLastName());
-			userData.put("email", user.getEmail());
-			userData.put("phone", user.getPhone());
-			userData.put("profileImageURL", user.getProfileImageURL());
-			userData.put("address", user.getAddress());
-			return ResponseEntity.ok(userData + " Login Successfull");
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("Unknow Error Occurred");
+//		try {
+//			User user = userService.getUserByEmail(loginRequest.getEmail());
+//			if (!userService.passwordMatched(loginRequest.getPassword(), user.getPassword())) {
+//				return ResponseEntity.status(401).body("Invalid credentials");
+//			}
+//			Map<String, Object> userData = new HashMap<>();
+//			userData.put("id", user.getId());
+//			userData.put("name", user.getFirstName() + " " + user.getLastName());
+//			userData.put("email", user.getEmail());
+//			userData.put("phone", user.getPhone());
+//			userData.put("profileImageURL", user.getProfileImageURL());
+//			userData.put("address", user.getAddress());
+//			return ResponseEntity.ok(userData );
+//		} catch (Exception e) {
+//			return ResponseEntity.badRequest().body("Unknow Error Occurred");
+//		}
+		String token = userService.verify(loginRequest);
+		if (!token.isEmpty()) {
+			Map<String, String> response = new HashMap<>();
+			response.put("message", "Login Successful");
+			response.put("token", token);
+			return ResponseEntity.ok(response);
 		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not Found, check username or password");
 	}
 }

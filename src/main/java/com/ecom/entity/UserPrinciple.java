@@ -17,7 +17,7 @@ public class UserPrinciple implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+		return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 	}
 
 	@Override
