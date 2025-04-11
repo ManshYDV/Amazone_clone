@@ -17,20 +17,20 @@ The goal is to learn and implement core features of a typical e-commerce applica
 
 ## ✅ Features Implemented So Far
  
- ✅ Spring Security & JWT
+ 🔷 Spring Security & JWT
  User registration & login using DTOs
 Clean separation of request/response payloads from entity logic.
 
- JWT token-based authentication
+ 🔷JWT token-based authentication
 Generates JWT on login and uses it to authenticate protected routes.
 
- Secure protected endpoints
+ 🔷Secure protected endpoints
 Used Spring Security to restrict access to certain endpoints based on user roles.
 
- Address stored as an embedded field in the User entity
+ 🔷Address stored as an embedded field in the User entity
 Structured the address within the user table using JPA @Embedded.
 
- Basic validation for forms
+ 🔷Basic validation for forms
 Used annotations like @NotBlank, @Email, etc. for clean data validation on the backend.
 
 ---
