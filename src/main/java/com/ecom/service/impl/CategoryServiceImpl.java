@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecom.dto.CategoryDTO;
 import com.ecom.entity.Category;
+import com.ecom.mapper.CategoryMapper;
 import com.ecom.repo.CategoryRepo;
 import com.ecom.service.CategoryService;
 
@@ -22,12 +24,12 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public boolean categoryExists(String name) {
-		return categoryRepo.existsByName(name);
+		return categoryRepo.existsByName(name.trim());
 	}
 
 	@Override
-	public List<Category> getAllCategory() {
-		return categoryRepo.findAll();
+	public List<CategoryDTO> getAllCategory() {
+		return categoryRepo.findAll().stream().map(CategoryMapper::toDTO).toList();
 	}
 
 	@Override
