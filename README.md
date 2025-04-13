@@ -17,33 +17,53 @@ The goal is to learn and implement core features of a typical e-commerce applica
 
 ## ✅ Features Implemented So Far
  
- 🔷 Spring Security & JWT
- User registration & login using DTOs
-Clean separation of request/response payloads from entity logic.
+ ✔️ Spring Security & JWT
+ 
+ 
+    ➡️ User registration & login using DTOs
+    ➡️ Clean separation of request/response payloads from entity logic.
+    ➡️ JWT token-based authentication
+    ➡️ Generates JWT on login and uses it to authenticate protected routes.
+    ➡️ Secure protected endpoints
+    ➡️ Used Spring Security to restrict access to certain endpoints based on user roles.
+    ➡️ Address stored as an embedded field in the User entity
+    ➡️ Structured the address within the user table using JPA @Embedded.
+    ➡️ Basic validation for forms
+    ➡️ Used annotations like @NotBlank, @Email, etc. for clean data validation on the backend.
 
- 🔷JWT token-based authentication
-Generates JWT on login and uses it to authenticate protected routes.
+✔️ Category Management API
 
- 🔷Secure protected endpoints
-Used Spring Security to restrict access to certain endpoints based on user roles.
+    ➡️ CRUD operations for product categories with clean validation and error handling.
+    ➡️ Validates input using @NotBlank, @Size, etc.
+    ➡️Prevents duplicate category creation.
+    ➡️ Proper HTTP status responses (400, 404, 201, 200).
+    ➡️ Returns success/error in a consistent APIResponse format.
 
- 🔷Address stored as an embedded field in the User entity
-Structured the address within the user table using JPA @Embedded.
+✔️ Product Management API
 
- 🔷Basic validation for forms
-Used annotations like @NotBlank, @Email, etc. for clean data validation on the backend.
+    ➡️ Full CRUD functionality with DTO-based structure and category mapping.
+    ➡️ Uses ProductDTO for clean request/response separation.
+    ➡️ Validates fields like title, price, stock, and category ID.
+    ➡️ Ensures updates do not create new entries accidentally.
+    ➡️ Includes category validation for all product operations.
+
+✔️ Consistent Architecture with Mappers
+
+    ➡️ Mapped DTO <-> Entity conversions using static mapper utility classes for clean service/controller code.
 
 ---
 
 ## 🔄 Upcoming Features
 
-- [ ] Product management APIs (CRUD)  
-- [ ] Cart functionality  
-- [ ] Order placement 
-- [ ] Admin panel for product control  
-- [ ] Frontend integration  
-- [ ] Image storage (MySQL + MongoDB hybrid setup)  
-- [ ] Payment gateway integration (maybe later)
+- [✅] Spring Security & JWT  
+- [✅] Category Management API  
+- [✅] Product management APIs (CRUD)  
+- [🔜] Cart functionality  
+- [🔜] Order placement 
+- [🔜] Admin panel for Administration control  
+- [🔜] Frontend integration  
+- [🔜] Image storage (MySQL + MongoDB hybrid setup)  
+- [🔜] Payment gateway integration (maybe later)
 
 ---
 
